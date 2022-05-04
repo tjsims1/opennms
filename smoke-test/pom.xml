@@ -10,7 +10,7 @@
     <skipITs>true</skipITs>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <updatePolicy>never</updatePolicy>
-    <camelVersion>2.19.1</camelVersion>
+    <camelVersion>2.25.4</camelVersion>
     <surefireVersion>2.18</surefireVersion>
     <failsafeVersion>2.22.2</failsafeVersion>
     <frontendPluginVersion>0.0.29</frontendPluginVersion>

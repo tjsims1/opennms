@@ -1683,7 +1683,7 @@
     <asciidoctorVersion>1.5.6</asciidoctorVersion>
     <asciidoctorjVersion>1.6.2</asciidoctorjVersion>
     <asciidoctorjPdfVersion>1.5.3</asciidoctorjPdfVersion>
-    <activemqVersion>5.14.5</activemqVersion>
+    <activemqVersion>5.15.15</activemqVersion>
     <atomikosVersion>3.9.2</atomikosVersion>
     <awsSqsMessagingVersion>1.0.4</awsSqsMessagingVersion>
     <awsSdkVersion>1.11.218</awsSdkVersion>
@@ -1691,7 +1691,7 @@
     <bsfVersion>2.4.0</bsfVersion>
     <bsonVersion>3.5.0</bsonVersion>
     <caffeineVersion>2.8.0</caffeineVersion>
-    <camelVersion>2.19.1</camelVersion>
+    <camelVersion>2.20.4</camelVersion>
     <cassandraUnitVersion>3.11.2.0</cassandraUnitVersion>
     <!-- Match Newts version -->
     <cassandraVersion>3.5.0</cassandraVersion>
@@ -1713,8 +1713,8 @@
     <commonsValidatorVersion>1.6</commonsValidatorVersion>
     <c3p0Version>0.9.5.4</c3p0Version>
     <curatorVersion>3.2.1</curatorVersion>
-    <cxfVersion>3.2.8</cxfVersion>
-    <cxfXjcVersion>3.3.0</cxfXjcVersion>
+    <cxfVersion>3.2.14</cxfVersion>
+    <cxfXjcVersion>3.3.1</cxfXjcVersion>
     <dhcp4javaVersion>1.1.0</dhcp4javaVersion>
     <dnsjavaVersion>2.1.9_1</dnsjavaVersion>
     <dropwizardMetricsVersion>3.1.2</dropwizardMetricsVersion>
@@ -3619,6 +3619,56 @@
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-jms</artifactId>
         <version>${camelVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-core</artifactId>
+        <version>${cxfVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+        <version>${cxfVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        <version>${cxfVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-rs-client</artifactId>
+        <version>${cxfVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-rs-extension-providers</artifactId>
+        <version>${cxfVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-rs-extension-search</artifactId>
+        <version>${cxfVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-transports-http</artifactId>
+        <version>${cxfVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-transports-local</artifactId>
+        <version>${cxfVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-ws-addr</artifactId>
+        <version>${cxfVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-ws-mex</artifactId>
+        <version>${cxfVersion}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.camel</groupId>
