@@ -1,8 +1,8 @@
 /*******************************************************************************
  * This file is part of OpenNMS(R).
  *
- * Copyright (C) 2013-2014 The OpenNMS Group, Inc.
- * OpenNMS(R) is Copyright (C) 1999-2014 The OpenNMS Group, Inc.
+ * Copyright (C) 2007-2022 The OpenNMS Group, Inc.
+ * OpenNMS(R) is Copyright (C) 1999-2022 The OpenNMS Group, Inc.
  *
  * OpenNMS(R) is a registered trademark of The OpenNMS Group, Inc.
  *
@@ -26,38 +26,19 @@
  *     http://www.opennms.com/
  *******************************************************************************/
 
-package org.opennms.netmgt.config.service;
+package me.tongfei.progressbar;
 
-import java.util.Objects;
+import java.time.Duration;
+import java.util.Optional;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="at")
-@XmlEnum
-public enum InvokeAtType {
-    @XmlEnumValue("start")
-    START("Start", "Starting"),
-    
-    @XmlEnumValue("stop")
-    STOP("Stop", "Stopping"),
-    
-    @XmlEnumValue("status")
-    STATUS("Status", "Getting status");
-
-
-    private final String label;
-    private final String presentParticiple;
-
-    InvokeAtType(String label, String presentParticiple) {
-        this.label = Objects.requireNonNull(label);
-        this.presentParticiple = Objects.requireNonNull(presentParticiple);
+/**
+ * Class to get around a visibility issue in the progress bar library.
+ *
+ * This will be removed once <a href="https://github.com/ctongfei/progressbar/pull/146">PR #146</a> is released.
+ */
+public class StaticETA {
+    public static void setETAOnBuilder(ProgressBarBuilder builder, Duration eta) {
+        var estimatedCompletion = System.currentTimeMillis() + eta.toMillis();
+        builder.setETAFunction((a, b) -> Optional.of(Duration.ofMillis(Math.max(estimatedCompletion - System.currentTimeMillis(), 0))));
     }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public String getPresentParticiple() { return presentParticiple; }
 }
