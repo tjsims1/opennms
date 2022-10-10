@@ -139,6 +139,9 @@ public abstract class AbstractDaoRestServiceWithDTO<T,D,Q,K extends Serializable
     private final Lock m_writeLock = m_globalLock.writeLock();
 
     protected static final int DEFAULT_LIMIT = 10;
+    public static final Integer DEFAULT_FLAG = null;
+    protected static final Integer UNLIMITED = Integer.MAX_VALUE;
+    public static final Integer UNLIMITED_FLAG = 0;
 
     protected abstract OnmsDao<T,K> getDao();
     protected abstract Class<T> getDaoClass();
@@ -255,6 +258,7 @@ public abstract class AbstractDaoRestServiceWithDTO<T,D,Q,K extends Serializable
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_ATOM_XML})
     public Response get(@Context final UriInfo uriInfo, @Context final SearchContext searchContext) {
         Criteria crit = getCriteria(uriInfo, searchContext);
+        LOG.debug("Limit set to: "+crit.getLimit());
         final List<T> coll = getDao().findMatching(crit);
         if (coll == null || coll.size() < 1) {
             return Response.status(Status.NO_CONTENT).build();
@@ -555,8 +559,12 @@ public abstract class AbstractDaoRestServiceWithDTO<T,D,Q,K extends Serializable
 
     private static void applyLimitOffsetOrderBy(final MultivaluedMap<String,String> p, final CriteriaBuilder builder, final Integer defaultLimit) {
         final QueryParameters queryParameters = QueryParametersBuilder.buildFrom(p);
-        if (queryParameters.getLimit() == null) {
-            queryParameters.setLimit(defaultLimit);
+        if (queryParameters.getLimit() == DEFAULT_FLAG) {
+            queryParameters.setLimit(DEFAULT_LIMIT);
+        } else if (queryParameters.getLimit().equals(UNLIMITED_FLAG)) {
+            queryParameters.setLimit(UNLIMITED);
+        } else {
+            queryParameters.setLimit(queryParameters.getLimit());
         }
         CriteriaBuilderUtils.applyQueryParameters(builder, queryParameters);
     }

@@ -91,6 +91,7 @@ public class MonitoringLocationRestService extends AbstractDaoRestService<OnmsMo
         final CriteriaBuilder builder = new CriteriaBuilder(OnmsMonitoringLocation.class);
 
         // Order by location name by default
+        // Limit is set per page in webapp as desired
         builder.orderBy("locationName").asc();
 
         return builder;

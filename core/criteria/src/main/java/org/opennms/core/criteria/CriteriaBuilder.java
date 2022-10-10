@@ -32,7 +32,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 import org.opennms.core.criteria.Alias.JoinType;
@@ -73,6 +72,14 @@ public class CriteriaBuilder {
     private boolean m_isMultipleAnd = false;
 
     private static final Restriction[] EMPTY_RESTRICTION_ARRAY = new Restriction[0];
+
+    private static final Integer DEFAULT_LIMIT = 10;
+
+    private static final Integer UNLIMITED = Integer.MAX_VALUE;
+
+    private static final Integer UNLIMITED_FLAG = 0;
+
+    private static final Integer DEFAULT_FLAG = 0;
 
     public CriteriaBuilder(final Class<?> clazz) {
         this(clazz, null);
@@ -163,7 +170,13 @@ public class CriteriaBuilder {
     }
 
     public CriteriaBuilder limit(final Integer limit) {
-        m_limit = ((limit == null || limit == 0) ? null : limit);
+        if (limit == DEFAULT_FLAG) {
+            m_limit = DEFAULT_LIMIT;
+        } else if (limit.equals(UNLIMITED_FLAG)){
+            m_limit = UNLIMITED;
+        } else {
+            m_limit = limit;
+        }
         return this;
     }
 

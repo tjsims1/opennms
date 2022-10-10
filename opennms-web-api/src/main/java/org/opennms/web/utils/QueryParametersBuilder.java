@@ -28,6 +28,7 @@
 
 package org.opennms.web.utils;
 
+import org.jfree.util.Log;
 import org.opennms.core.utils.WebSecurityUtils;
 
 import static org.opennms.web.utils.UriInfoUtils.hasKey;
@@ -47,6 +48,8 @@ public abstract class QueryParametersBuilder {
         final QueryParameters queryParameters = new QueryParameters();
         if (hasKey(params, "limit")) {
             queryParameters.setLimit(WebSecurityUtils.safeParseInt(params.getFirst("limit")));
+        } else {
+            Log.debug("No limit found");
         }
         if (hasKey(params, "offset")) {
             queryParameters.setOffset(WebSecurityUtils.safeParseInt(params.getFirst("offset")));
