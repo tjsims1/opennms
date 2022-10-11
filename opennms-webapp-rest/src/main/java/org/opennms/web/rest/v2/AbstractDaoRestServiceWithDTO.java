@@ -559,11 +559,12 @@ public abstract class AbstractDaoRestServiceWithDTO<T,D,Q,K extends Serializable
 
     private static void applyLimitOffsetOrderBy(final MultivaluedMap<String,String> p, final CriteriaBuilder builder, final Integer defaultLimit) {
         final QueryParameters queryParameters = QueryParametersBuilder.buildFrom(p);
-        if (queryParameters.getLimit() == DEFAULT_FLAG) {
+        if (queryParameters.getLimit() == DEFAULT_FLAG || queryParameters.getLimit().equals(UNLIMITED_FLAG)) {
             queryParameters.setLimit(DEFAULT_LIMIT);
-        } else if (queryParameters.getLimit().equals(UNLIMITED_FLAG)) {
-            queryParameters.setLimit(UNLIMITED);
+        /*} else if (queryParameters.getLimit().equals(UNLIMITED_FLAG)) {
+            queryParameters.setLimit(UNLIMITED);*/
         } else {
+            // This code is just silly but it was here
             queryParameters.setLimit(queryParameters.getLimit());
         }
         CriteriaBuilderUtils.applyQueryParameters(builder, queryParameters);

@@ -70,10 +70,10 @@ public class QueryParameters {
     }
 
     public static Integer calcLimit(Integer flaggedLimit){
-        if (flaggedLimit == DEFAULT_FLAG) {
+        if (flaggedLimit == DEFAULT_FLAG || flaggedLimit.equals(UNLIMITED_FLAG)) {
             return DEFAULT_LIMIT;
-        } else if (flaggedLimit.equals(UNLIMITED_FLAG)){
-            return UNLIMITED;
+        /*} else if (flaggedLimit.equals(UNLIMITED_FLAG)){
+            return UNLIMITED;*/
         } else {
             return flaggedLimit;
         }
@@ -84,7 +84,7 @@ public class QueryParameters {
     }
 
     public Integer getLimit() {
-        return limit;
+        return calcLimit(this.limit);
     }
 
     public void setOffset(Integer offset) {

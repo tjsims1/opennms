@@ -170,11 +170,11 @@ public class CriteriaBuilder {
     }
 
     public CriteriaBuilder limit(final Integer limit) {
-        if (limit == DEFAULT_FLAG) {
+        if (limit == DEFAULT_FLAG || limit.equals(UNLIMITED_FLAG)) {
             m_limit = DEFAULT_LIMIT;
-        } else if (limit.equals(UNLIMITED_FLAG)){
+        } /*else if (limit.equals(UNLIMITED_FLAG)){
             m_limit = UNLIMITED;
-        } else {
+        }*/ else {
             m_limit = limit;
         }
         return this;
